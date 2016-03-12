@@ -1,0 +1,11 @@
+{
+  "name": "Message_Board",
+  "description": "Message board demonstrating mongo",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "ejs": "^2.3.3",
+    "express": "^4.13.3",
+    "mongoose": "*"
+  }
+}
+

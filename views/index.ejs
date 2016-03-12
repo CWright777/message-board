@@ -1,0 +1,46 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title></title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <h1>Message Board</h1>
+  <form action="/" method="post">
+    <label>Name:</label>
+    <input type="text" name="name"> 
+    <br>
+    <label>Message:</label>
+    <br>
+    <textarea name="message" rows="5" cols="40"></textarea>
+    <br>
+    <input type="submit" value="Post Message">
+  </form>
+  <% if(typeof(messages) != "undefined"){ %>
+    <% for ( var i in messages){ %>
+      <div>
+        <h2>Name: <%= messages[i].name %></h2>
+        <h2>Message: <%= messages[i].message %></h2>
+        <% if(typeof(comments) != "undefined"){ %>
+          <%= messages[0] %>
+          <% for(var comment in messages[i].comments) { %>
+          <% } %>
+        <% } %>
+        <form action="/comments" method="post">
+          <label>Name:</label>
+          <input type="text" name="name"> 
+          <br>
+          <label>Comment:</label>
+          <br>
+          <textarea name="comment" rows="5" cols="40"></textarea>
+          <br>
+          <input type="hidden" name="message_id" value="<%= messages[i].id %>">
+          <input type="submit" value="Post Comment">
+        </form>
+      </div>
+    <% } %>
+  <% } %>
+</body>
+</html>
+
