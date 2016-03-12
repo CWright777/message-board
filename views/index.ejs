@@ -18,15 +18,16 @@
     <input type="submit" value="Post Message">
   </form>
   <% if(typeof(messages) != "undefined"){ %>
-    <% for ( var i in messages){ %>
-      <div>
+    <% for( var i in messages){ %>
+      <div style="border-top: 1px solid black">
         <h2>Name: <%= messages[i].name %></h2>
         <h2>Message: <%= messages[i].message %></h2>
-        <% if(typeof(comments) != "undefined"){ %>
-          <%= messages[0] %>
-          <% for(var comment in messages[i].comments) { %>
-          <% } %>
+        <% for (x in messages[i].comments){ %>
+        <div style="border-top: 1px solid black">
+        <h4>Name: <%= messages[i].comments[x].name %></h4>
+        <h4><%= messages[i].comments[x].comment %></h4>
         <% } %>
+        </div>
         <form action="/comments" method="post">
           <label>Name:</label>
           <input type="text" name="name"> 

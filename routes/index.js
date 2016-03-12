@@ -1,16 +1,13 @@
 module.exports = function(app,Message,Comment){
   var errors_array = []
   app.get('/', function(req,res){
-    Message.find({}, function(m_error,messages){
-      Comment.find({}, function(c_error,comments){
-        if (m_error || c_error){
-          res.send("Error")
-        } else {
-          res.render('index',{messages: messages, comments:comments})
-        }
-      })
+    Message.find({})
+    .populate('comments')
+    .exec(function(err, messages){
+      res.render('index',{messages: messages})
     })
   })
+
   app.post('/', function(req,res){
     message = new Message({name: req.body.name, message: req.body.message})
     message.save(function(err){
